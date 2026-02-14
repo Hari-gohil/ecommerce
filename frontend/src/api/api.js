@@ -5,7 +5,7 @@ import axios from "axios";
 ===================== */
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://ecommerce-zfl4.onrender.com/api",
 });
 
 /* =====================
