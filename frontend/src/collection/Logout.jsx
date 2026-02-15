@@ -13,10 +13,9 @@ const Logout = () => {
         console.log(err);
       }
 
-      // Remove login data
       localStorage.removeItem("userInfo");
 
-      navigate("/");
+      navigate("/", { replace: true }); // ✅ IMPORTANT
     };
 
     logout();
