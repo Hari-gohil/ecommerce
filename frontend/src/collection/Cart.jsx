@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { getCart, removeFromCart, updateCartQuantity } from "../api/api";
 
 const Cart = () => {
@@ -7,6 +8,7 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   // Fetch Cart
   const fetchCart = async () => {
@@ -279,7 +281,9 @@ const Cart = () => {
               </div>
             </div>
 
-            <button className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+            <button 
+            onClick={() => navigate("/order")}
+            className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
