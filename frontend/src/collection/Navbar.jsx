@@ -135,8 +135,10 @@ const Navbar = () => {
                     >
                       <span className="font-medium">My Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer py-3 hover:bg-gray-50">
-                      <span className="font-medium">Orders & Returns</span>
+                    <DropdownMenuItem 
+                    onClick={() => navigate("/my-orders")}
+                    className="cursor-pointer py-3 hover:bg-gray-50">
+                      <span className="font-medium">Orders</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="cursor-pointer py-3 hover:bg-gray-50">
                       <span className="font-medium">Wishlist</span>

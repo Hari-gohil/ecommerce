@@ -68,25 +68,25 @@ const Cart = () => {
 
   // Update Quantity
   const updateQuantity = async (productId, newQuantity) => {
-  if (newQuantity < 1) return;
+    if (newQuantity < 1) return;
 
-  // 1️⃣ Update UI instantly
-  setCart((prevCart) => ({
-    ...prevCart,
-    items: prevCart.items.map((item) =>
-      item.product._id === productId
-        ? { ...item, quantity: newQuantity }
-        : item
-    ),
-  }));
+    // 1️⃣ Update UI instantly
+    setCart((prevCart) => ({
+      ...prevCart,
+      items: prevCart.items.map((item) =>
+        item.product._id === productId
+          ? { ...item, quantity: newQuantity }
+          : item,
+      ),
+    }));
 
-  // 2️⃣ Update backend
-  try {
-    await updateCartQuantity(productId, newQuantity);
-  } catch (error) {
-    console.error(error);
-  }
-};
+    // 2️⃣ Update backend
+    try {
+      await updateCartQuantity(productId, newQuantity);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (loading)
     return (
@@ -281,9 +281,14 @@ const Cart = () => {
               </div>
             </div>
 
-            <button 
-            onClick={() => navigate("/order")}
-            className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+            <button
+              onClick={() =>
+                navigate("/order", {
+                  state: { cart }, // ✅ send cart
+                })
+              }
+              className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
