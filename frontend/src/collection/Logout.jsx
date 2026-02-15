@@ -13,10 +13,10 @@ const Logout = () => {
         console.log(err);
       }
 
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      // Remove login data
+      localStorage.removeItem("userInfo");
 
-      navigate("/signin");
+      navigate("/");
     };
 
     logout();

@@ -53,7 +53,9 @@ const navigate = useNavigate();
         password: "",
         confirmPassword: "",
       });
-      navigate("/"); 
+      // navigate("/"); 
+      navigate("/auth/signin");
+      
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");
     } finally {

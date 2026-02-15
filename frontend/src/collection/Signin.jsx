@@ -41,7 +41,8 @@ const Signin = () => {
       );
 
       // Redirect after login
-      navigate("/");
+      // navigate("/");
+      navigate("/home");
       console.log("Login successfully");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");

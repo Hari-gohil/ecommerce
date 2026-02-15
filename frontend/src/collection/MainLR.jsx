@@ -14,8 +14,8 @@ const MainLR = () => {
             <div id='con1'>
                 <h1 id='main_tital'>Welcome</h1>
                 <p id='Some_text'>Everything you love, one click away.</p>
-                <Link to="/signup"> <button>REGISTER</button><br/><br/> </Link>
-                <Link to="/signin"><button style={{color:"red"}}>LOGIN</button></Link>
+                <Link to="/auth/signup"> <button>REGISTER</button><br/><br/> </Link>
+                <Link to="/auth/signin"><button style={{color:"red"}}>LOGIN</button></Link>
             </div>
         </div>
         
