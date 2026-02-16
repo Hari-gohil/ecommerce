@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { getProducts, getUserProfile } from "./../api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { addToCart } from "../api/api";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cartLoading, setCartLoading] = useState(null);
+  const [wishlist, setWishlist] = useState([]);
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const search = queryParams.get("search") || "";
 
   useEffect(() => {
     const init = async () => {
@@ -15,8 +21,7 @@ const ProductList = () => {
 
       try {
         const { data } = await getUserProfile();
-        setWishlist(data.wishlist || []);
-        console.log(data.wishlist);
+        setWishlist(data?.wishlist || []);
       } catch (error) {
         setWishlist([]);
       }
@@ -48,7 +53,6 @@ const ProductList = () => {
     try {
       const { data } = await getProducts();
       setProducts(data);
-      console.log(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -69,12 +73,19 @@ const ProductList = () => {
     return Math.round(((price - discountPrice) / price) * 100);
   };
 
+  const filteredProducts = products.filter(
+    (item) =>
+      item.title?.toLowerCase().includes(search.toLowerCase()) ||
+      item.brand?.toLowerCase().includes(search.toLowerCase()) ||
+      item.description?.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-          {products.map((item) => {
+          {filteredProducts.map((item) => {
             const discountPercentage = calculateDiscountPercentage(
               item.price,
               item.discountPrice,
@@ -218,7 +229,7 @@ const ProductList = () => {
         </div>
 
         {/* Empty State */}
-        {products.length === 0 && (
+        {filteredProducts.length === 0 && (
           <div className="text-center py-16">
             <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center">
               <svg

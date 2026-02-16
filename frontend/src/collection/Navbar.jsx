@@ -23,6 +23,8 @@ const Navbar = () => {
   const [cart, setCart] = useState({ items: [] });
   const [loading, setLoading] = useState(true);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   // Fetch Cart
   const fetchCart = async () => {
     try {
@@ -35,10 +37,22 @@ const Navbar = () => {
     }
   };
 
+  //Handle Search Function
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    // Real-time navigation to product list with query
+    navigate(`/home?search=${value}`);
+  };
+
+  const handleSubmit = () => {
+    navigate(`/home?search=${searchTerm}`);
+  };
+
   useEffect(() => {
     fetchCart();
   }, []);
-
 
   return (
     <nav className="w-full bg-gradient-to-r from-white to-gray-50 shadow-lg border-b border-gray-100 sticky top-0 z-50">
@@ -68,7 +82,6 @@ const Navbar = () => {
                 onClick={() => navigate("/")}
               />
             </div>
-
           </div>
 
           {/* Desktop Search Bar */}
@@ -79,10 +92,16 @@ const Navbar = () => {
               </div>
               <input
                 type="text"
+                value={searchTerm}
+                onChange={handleSearch}
                 placeholder="Search products, brands, and categories..."
                 className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm hover:shadow transition-shadow"
               />
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white px-4 py-1.5 rounded-lg hover:bg-blue-700 transition-colors">
+
+              <button
+                onClick={handleSubmit}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white px-4 py-1.5 rounded-lg hover:bg-blue-700 transition-colors"
+              >
                 Search
               </button>
             </div>
@@ -135,9 +154,10 @@ const Navbar = () => {
                     >
                       <span className="font-medium">My Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem 
-                    onClick={() => navigate("/my-orders")}
-                    className="cursor-pointer py-3 hover:bg-gray-50">
+                    <DropdownMenuItem
+                      onClick={() => navigate("/my-orders")}
+                      className="cursor-pointer py-3 hover:bg-gray-50"
+                    >
                       <span className="font-medium">Orders</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="cursor-pointer py-3 hover:bg-gray-50">
@@ -211,6 +231,8 @@ const Navbar = () => {
               </div>
               <input
                 type="text"
+                value={searchTerm}
+                onChange={handleSearch}
                 placeholder="Search products..."
                 className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                 autoFocus
