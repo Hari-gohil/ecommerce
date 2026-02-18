@@ -200,9 +200,10 @@ const ProductDetail = () => {
                   </span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  {renderStars(product.rating || 4.5)}
+                  {renderStars(product.rating)}
                   <span className="text-gray-600 ml-2">
-                    ({product.rating || 4.5})
+                    ({product.rating} from {product.reviews?.length || 0}{" "}
+                    reviews)
                   </span>
                 </div>
               </div>
@@ -293,8 +294,7 @@ const ProductDetail = () => {
                   <span>{cartLoading ? "Adding..." : "Add to Cart"}</span>
                 </button>
                 <button
-                  onClick={() =>navigate("/order", { state: { product } })
- }
+                  onClick={() => navigate("/order", { state: { product } })}
                   className="bg-gradient-to-r from-gray-900 to-black text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-black hover:to-gray-900 transition-all flex items-center justify-center space-x-2 shadow-lg"
                 >
                   <FaShoppingBag className="h-6 w-6" />
