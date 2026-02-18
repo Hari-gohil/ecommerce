@@ -24,6 +24,7 @@ import MyOrders from "./collection/MyOrders";
 
 import Signin from "./collection/Signin";
 import Signup from "./collection/Signup";
+import EditProfile from "./collection/EditProfile";
 
 function App() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -131,6 +132,16 @@ function App() {
           </>
         }
       />
+      <Route
+        path="/edit-profile"
+        element={
+          <>
+            <Navbar />
+            <EditProfile />
+            <Footer />
+          </>
+        }
+      />
       <Route path="/my-orders" element={<MyOrders />} />
 
       <Route path="/order" element={<OrderForm />} />
@@ -147,17 +158,15 @@ function App() {
       />
 
       <Route
-  path="/profile"
-  element={
-    <>
-      <Navbar />
-      <Profile />
-      <Footer />
-    </>
-  }
->
-</Route>
-
+        path="/profile"
+        element={
+          <>
+            <Navbar />
+            <Profile />
+            <Footer />
+          </>
+        }
+      ></Route>
     </Routes>
   );
 }
