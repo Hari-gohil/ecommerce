@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 ===================== */
 export const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, phone } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists)
@@ -19,8 +19,9 @@ export const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      phone,
     });
- const token = jwt.sign(
+    const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "7d" },
@@ -29,8 +30,9 @@ export const registerUser = async (req, res) => {
       id: user._id,
       name: user.name,
       email: user.email,
+      phone: user.phone,
       role: user.role,
-      token:token
+      token: token,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -63,6 +65,7 @@ export const loginUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone, 
         role: user.role,
       },
     });
@@ -84,17 +87,22 @@ export const logoutUser = async (req, res) => {
 ===================== */
 export const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id)
-      .select("-password")
-      .populate("wishlist");
+    const user = await User.findById(req.user.id).select("-password");
 
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    res.json(user);
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      role: user.role,
+      addresses: user.addresses,
+      wishlist: user.wishlist,
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 /* =====================
    UPDATE PROFILE
@@ -130,6 +138,57 @@ export const addAddress = async (req, res) => {
     await user.save();
 
     res.json(user.addresses);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get ADDRESS
+export const getAddresses = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("addresses");
+
+    res.json(user.addresses);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// DELET ADDRESS
+export const deleteAddress = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findById(req.user.id);
+
+    user.addresses = user.addresses.filter(
+      (addr) => addr._id.toString() !== id,
+    );
+
+    await user.save();
+
+    res.json(user.addresses);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+//Change Password
+export const changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+
+    const user = await User.findById(req.user.id);
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+
+    if (!isMatch)
+      return res.status(400).json({ message: "Old password incorrect" });
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+
+    res.json({ message: "Password updated" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

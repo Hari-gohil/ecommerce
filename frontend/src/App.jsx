@@ -13,6 +13,7 @@ import Culture from "./Subcomponent/Culture";
 import Sustainability from "./Subcomponent/Sustainability";
 import Stories from "./Subcomponent/Stories";
 import Policy from "./Subcomponent/Policy";
+import Profile from "./collection/Profile";
 
 import Footer from "./collection/Footer";
 import Logout from "./collection/Logout";
@@ -30,11 +31,12 @@ function App() {
 
   return (
     <Routes>
-
       {/* Default */}
       <Route
         path="/"
-        element={isAuth ? <Navigate to="/home" /> : <Navigate to="/auth/signin" />}
+        element={
+          isAuth ? <Navigate to="/home" /> : <Navigate to="/auth/signin" />
+        }
       />
 
       {/* Auth Layout */}
@@ -55,17 +57,80 @@ function App() {
         }
       />
 
-      <Route path="/about" element={<><Navbar /><About /><Footer /></>} />
+      <Route
+        path="/about"
+        element={
+          <>
+            <Navbar />
+            <About />
+            <Footer />
+          </>
+        }
+      />
       <Route path="/shop" element={<Shop />} />
       <Route path="/cart" element={<Cart />} />
 
-      <Route path="/ethics" element={<><Navbar /><Ethics /><Footer /></>} />
-      <Route path="/culture" element={<><Navbar /><Culture /><Footer /></>} />
-      <Route path="/sustainability" element={<><Navbar /><Sustainability /><Footer /></>} />
-      <Route path="/stories" element={<><Navbar /><Stories /><Footer /></>} />
-      <Route path="/policy" element={<><Navbar /><Policy /><Footer /></>} />
+      <Route
+        path="/ethics"
+        element={
+          <>
+            <Navbar />
+            <Ethics />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/culture"
+        element={
+          <>
+            <Navbar />
+            <Culture />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/sustainability"
+        element={
+          <>
+            <Navbar />
+            <Sustainability />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/stories"
+        element={
+          <>
+            <Navbar />
+            <Stories />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/policy"
+        element={
+          <>
+            <Navbar />
+            <Policy />
+            <Footer />
+          </>
+        }
+      />
 
-      <Route path="/orders" element={<><Navbar /><Orders /><Footer /></>} />
+      <Route
+        path="/orders"
+        element={
+          <>
+            <Navbar />
+            <Orders />
+            <Footer />
+          </>
+        }
+      />
       <Route path="/my-orders" element={<MyOrders />} />
 
       <Route path="/order" element={<OrderForm />} />
@@ -81,6 +146,16 @@ function App() {
         }
       />
 
+      <Route
+        path="/profile"
+        element={
+          <>
+            <Navbar />
+            <Profile />
+            <Footer />
+          </>
+        }
+      />
     </Routes>
   );
 }

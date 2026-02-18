@@ -57,8 +57,6 @@
 //   return (
 //     <nav className="w-full bg-gradient-to-r from-white to-gray-50 shadow-lg border-b border-gray-100 sticky top-0 z-50">
 
-    
-
 //       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 //         {/* Main Navigation Bar */}
 //         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -300,10 +298,6 @@
 // };
 
 // export default Navbar;
-
-
-
-
 
 // this is all currect code :
 // import React, { useEffect, useState } from "react";
@@ -575,7 +569,6 @@
 
 // export default Navbar;
 
-
 // batter UI
 
 import React, { useEffect, useState } from "react";
@@ -635,7 +628,7 @@ const Navbar = () => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSubmit();
     }
   };
@@ -681,7 +674,7 @@ const Navbar = () => {
           <div className="hidden lg:block flex-1 max-w-xl xl:max-w-2xl mx-6">
             <div className="relative group">
               <CiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-200" />
-              
+
               <input
                 type="text"
                 value={searchTerm}
@@ -718,8 +711,12 @@ const Navbar = () => {
                   <button className="flex items-center space-x-2 p-2 rounded-xl hover:bg-gray-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 group">
                     <BsPersonCircle className="h-8 w-8 text-gray-500 group-hover:text-blue-600 transition-colors duration-200" />
                     <div className="flex flex-col text-left">
-                      <span className="text-xs text-gray-500">Welcome back</span>
-                      <span className="text-sm font-semibold text-gray-800">Sign In</span>
+                      <span className="text-xs text-gray-500">
+                        Welcome back
+                      </span>
+                      <span className="text-sm font-semibold text-gray-800">
+                        Sign In
+                      </span>
                     </div>
                   </button>
                 </DropdownMenuTrigger>
@@ -740,7 +737,7 @@ const Navbar = () => {
                     <DropdownMenuSeparator className="bg-gray-200" />
 
                     <DropdownMenuItem
-                      onClick={() => navigate("/profile")}
+                      onSelect={() => navigate("/profile")}
                       className="focus:bg-blue-50 focus:text-blue-700 cursor-pointer py-2"
                     >
                       My Profile
@@ -782,7 +779,7 @@ const Navbar = () => {
               aria-label="Shopping cart"
             >
               <AiOutlineShoppingCart className="h-5 w-5 sm:h-6 sm:w-6 text-gray-700 group-hover:text-blue-600 transition-colors duration-200" />
-              
+
               {cart?.items?.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold rounded-full h-5 min-w-[20px] flex items-center justify-center px-1 shadow-md animate-pulse">
                   {cart.items.length}

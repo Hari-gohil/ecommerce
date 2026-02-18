@@ -34,6 +34,10 @@ export const updateUserProfile = (data) => API.put("/users/profile", data);
 export const addAddress = (data) => API.post("/users/address", data);
 export const toggleWishlist = (productId) =>
   API.post("/users/wishlist", { productId });
+export const getAddresses = () => API.get("/users/address");
+export const deleteAddress = (id) => API.delete(`/users/address/${id}`);
+export const changePassword = (data) =>
+  API.put("/users/change-password", data);
 
 /* =====================
    SELLER

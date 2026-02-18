@@ -6,7 +6,10 @@ import {
   updateUserProfile,
   addAddress,
   toggleWishlist,
-  logoutUser
+  logoutUser,
+  getAddresses,
+  deleteAddress,
+  changePassword
 } from "../controllers/userController.js";
 import { protect } from "../middlewares/authMiddleware.js";
 
@@ -20,6 +23,9 @@ router.get("/profile", protect, getUserProfile);
 router.put("/profile", protect, updateUserProfile);
 
 router.post("/address", protect, addAddress);
+router.get("/address", protect, getAddresses);
+router.delete("/address/:id", protect, deleteAddress);
+router.put("/change-password", protect, changePassword);
 router.post("/wishlist", protect, toggleWishlist);
 
 

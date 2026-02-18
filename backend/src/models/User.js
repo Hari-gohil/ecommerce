@@ -19,7 +19,10 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "seller", "admin"],
       default: "user",
     },
-    phone: String,
+    phone: {
+      type: String,
+      default: "",
+    },
     addresses: [addressSchema],
     wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   },

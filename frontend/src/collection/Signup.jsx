@@ -111,7 +111,7 @@ const navigate = useNavigate();
         />
         <center>
            {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
+          {success && <p className="success">{success}</p>}
         </center>
         <button id="main_btn" disabled={loading}>
           {loading ? "Registering..." : "Register"}
