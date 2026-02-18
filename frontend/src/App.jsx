@@ -147,15 +147,17 @@ function App() {
       />
 
       <Route
-        path="/profile"
-        element={
-          <>
-            <Navbar />
-            <Profile />
-            <Footer />
-          </>
-        }
-      />
+  path="/profile"
+  element={
+    <>
+      <Navbar />
+      <Profile />
+      <Footer />
+    </>
+  }
+>
+</Route>
+
     </Routes>
   );
 }

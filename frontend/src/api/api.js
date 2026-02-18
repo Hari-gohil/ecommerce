@@ -30,7 +30,12 @@ API.interceptors.request.use((req) => {
 export const registerUser = (data) => API.post("/users/register", data);
 export const loginUser = (data) => API.post("/users/login", data);
 export const getUserProfile = () => API.get("/users/profile");
-export const updateUserProfile = (data) => API.put("/users/profile", data);
+export const updateUserProfile = (data) =>
+  axios.put("/api/users/profile", data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
 export const addAddress = (data) => API.post("/users/address", data);
 export const toggleWishlist = (productId) =>
   API.post("/users/wishlist", { productId });
@@ -38,6 +43,7 @@ export const getAddresses = () => API.get("/users/address");
 export const deleteAddress = (id) => API.delete(`/users/address/${id}`);
 export const changePassword = (data) =>
   API.put("/users/change-password", data);
+
 
 /* =====================
    SELLER
