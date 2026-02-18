@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://ecommerce-zfl4.onrender.com/api", // backend port
-    // baseURL: "http://localhost:3000/api"
+  // baseURL: "https://ecommerce-zfl4.onrender.com/api", // backend port
+    baseURL: "http://localhost:3000/api"
 });
 
 /* ================= TOKEN INTERCEPTOR ================= */
@@ -27,6 +27,9 @@ export const registerSeller = (data) =>
 export const loginSeller = (data) =>
   API.post("/sellers/login", data);
 
+export const getSellerProducts = (sellerId) =>
+  API.get(`/products/seller/${sellerId}`);
+
 /* ================= PRODUCTS ================= */
 
 // Create Product
@@ -50,6 +53,8 @@ export const uploadProductImage = (formData) =>
       "Content-Type": "multipart/form-data",
     },
   });
+
+  
 
 // Get Product By ID
 export const getProductById = (id) =>
