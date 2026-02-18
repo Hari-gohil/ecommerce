@@ -201,10 +201,10 @@ const EditProduct = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <div className="text-center">
-          <ArrowPathIcon className="h-12 w-12 text-blue-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600">Loading product data...</p>
+          <ArrowPathIcon className="h-10 w-10 sm:h-12 sm:w-12 text-blue-600 animate-spin mx-auto mb-3 sm:mb-4" />
+          <p className="text-sm sm:text-base text-gray-600">Loading product data...</p>
         </div>
       </div>
     );
@@ -216,29 +216,29 @@ const EditProduct = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <button
             onClick={() => navigate("/seller/products")}
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
+            className="inline-flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base text-gray-600 hover:text-gray-900 mb-4 sm:mb-6"
           >
-            <ArrowLeftIcon className="h-5 w-5" />
+            <ArrowLeftIcon className="h-4 w-4 sm:h-5 sm:w-5" />
             Back to Products
           </button>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Edit Product</h1>
-              <p className="text-gray-600 mt-1">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Edit Product</h1>
+              <p className="text-sm sm:text-base text-gray-600 mt-1">
                 Update product details and images
               </p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => navigate("/seller/products")}
-                className="px-5 py-2 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50"
+                className="px-4 sm:px-5 py-2 text-sm sm:text-base border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50"
               >
                 Cancel
               </button>
@@ -248,48 +248,47 @@ const EditProduct = () => {
 
         {/* Alerts */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-xl">
             <div className="flex items-center gap-2 text-red-700">
-              <ExclamationCircleIcon className="h-5 w-5" />
-              <span className="font-medium">{error}</span>
+              <ExclamationCircleIcon className="h-5 w-5 flex-shrink-0" />
+              <span className="text-sm sm:text-base font-medium">{error}</span>
             </div>
           </div>
         )}
 
         {success && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-xl">
             <div className="flex items-center gap-2 text-green-700">
-              <CheckCircleIcon className="h-5 w-5" />
-              <span className="font-medium">{success}</span>
+              <CheckCircleIcon className="h-5 w-5 flex-shrink-0" />
+              <span className="text-sm sm:text-base font-medium">{success}</span>
             </div>
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left Column - Images */}
-            <div className="lg:col-span-2">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+            {/* Left Column - Images & Basic Info */}
+            <div className="flex-1 space-y-6">
               {/* Image Upload Section */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
                   Product Images
                 </h2>
-                <p className="text-sm text-gray-600 mb-6">
-                  Upload up to 8 images. First image will be the main product
-                  image.
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">
+                  Upload up to 8 images. First image will be the main product image.
                 </p>
 
                 {/* Image Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
                   {allImages.map((image, index) => (
-                    <div key={index} className="relative group">
+                    <div key={index} className="relative group aspect-square">
                       <img
                         src={image}
                         alt={`Product ${index + 1}`}
-                        className="h-32 w-full object-cover rounded-lg border border-gray-200"
+                        className="w-full h-full object-cover rounded-lg border border-gray-200"
                         onError={(e) => {
                           e.target.src =
-                            "https://via.placeholder.com/200x128?text=Image+Error";
+                            "https://via.placeholder.com/200x200?text=Image+Error";
                         }}
                       />
                       <button
@@ -308,38 +307,38 @@ const EditProduct = () => {
                             removeImage(image, true);
                           }
                         }}
-                        className="absolute -top-2 -right-2 p-1 bg-red-100 text-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute -top-1.5 -right-1.5 p-1 bg-red-100 text-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                       >
                         {removedImages.includes(image) &&
                         index < formData.images.length ? (
-                          <span className="text-xs font-medium">Restore</span>
+                          <span className="text-[10px] sm:text-xs font-medium px-1">Restore</span>
                         ) : (
-                          <TrashIcon className="h-4 w-4" />
+                          <TrashIcon className="h-3 w-3 sm:h-4 sm:w-4" />
                         )}
                       </button>
                       {index === 0 && (
-                        <span className="absolute top-2 left-2 px-2 py-1 bg-blue-600 text-white text-xs rounded">
+                        <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 bg-blue-600 text-white text-[10px] sm:text-xs rounded">
                           Main
                         </span>
                       )}
                     </div>
                   ))}
 
-                  {/* Upload Button */}
+                  {/* Upload Input */}
                   {allImages.length < 8 && (
-                    <div className="col-span-2 sm:col-span-3 md:col-span-4">
-                      <div className="flex gap-2">
+                    <div className="col-span-2 xs:col-span-3 sm:col-span-4 md:col-span-5 lg:col-span-3 xl:col-span-4">
+                      <div className="flex flex-col xs:flex-row gap-2">
                         <input
                           type="text"
                           value={imageUrl}
                           onChange={(e) => setImageUrl(e.target.value)}
                           placeholder="Paste image URL here"
-                          className="flex-1 px-4 py-2 border border-gray-300 rounded-xl"
+                          className="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                         />
                         <button
                           type="button"
                           onClick={handleAddImageUrl}
-                          className="px-4 py-2 bg-blue-600 text-white rounded-xl"
+                          className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-blue-600 text-white rounded-xl hover:bg-blue-700 whitespace-nowrap"
                         >
                           Add
                         </button>
@@ -349,7 +348,7 @@ const EditProduct = () => {
                 </div>
 
                 {/* Image Stats */}
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 text-xs sm:text-sm text-gray-500">
                   <span>{allImages.length} of 8 images</span>
                   {removedImages.length > 0 && (
                     <span className="text-red-600">
@@ -360,14 +359,14 @@ const EditProduct = () => {
               </div>
 
               {/* Basic Information */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
                   Basic Information
                 </h2>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Product Title *
                     </label>
                     <input
@@ -375,14 +374,14 @@ const EditProduct = () => {
                       name="title"
                       value={formData.title}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                       placeholder="Enter product title"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Description *
                     </label>
                     <textarea
@@ -390,7 +389,7 @@ const EditProduct = () => {
                       value={formData.description}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                       placeholder="Describe your product in detail"
                       required
                     />
@@ -400,20 +399,20 @@ const EditProduct = () => {
             </div>
 
             {/* Right Column - Pricing & Details */}
-            <div className="lg:col-span-1">
+            <div className="lg:w-80 xl:w-96 space-y-6">
               {/* Pricing Section */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
                   Pricing
                 </h2>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Price (₹) *
                     </label>
                     <div className="relative">
-                      <CurrencyRupeeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <CurrencyRupeeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
                       <input
                         type="number"
                         name="price"
@@ -421,7 +420,7 @@ const EditProduct = () => {
                         onChange={handleInputChange}
                         min="0"
                         step="0.01"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                        className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                         placeholder="0.00"
                         required
                       />
@@ -429,11 +428,11 @@ const EditProduct = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Discount Price (₹)
                     </label>
                     <div className="relative">
-                      <CurrencyRupeeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <CurrencyRupeeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
                       <input
                         type="number"
                         name="discountPrice"
@@ -441,13 +440,13 @@ const EditProduct = () => {
                         onChange={handleInputChange}
                         min="0"
                         step="0.01"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                        className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                         placeholder="Optional"
                       />
                     </div>
                     {formData.discountPrice &&
                       parseFloat(formData.discountPrice) > 0 && (
-                        <p className="text-sm text-green-600 mt-2">
+                        <p className="text-xs sm:text-sm text-green-600 mt-1.5 sm:mt-2">
                           Discount: ₹
                           {parseFloat(formData.price) -
                             parseFloat(formData.discountPrice)}{" "}
@@ -459,25 +458,25 @@ const EditProduct = () => {
               </div>
 
               {/* Inventory Section */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
                   Inventory
                 </h2>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Stock Quantity *
                     </label>
                     <div className="relative">
-                      <CubeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <CubeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
                       <input
                         type="number"
                         name="stock"
                         value={formData.stock}
                         onChange={handleInputChange}
                         min="0"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                        className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                         placeholder="Enter stock quantity"
                         required
                       />
@@ -485,11 +484,11 @@ const EditProduct = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Stock Status
                     </label>
                     <div
-                      className={`px-4 py-3 rounded-xl ${
+                      className={`px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl ${
                         formData.stock > 10
                           ? "bg-green-50 text-green-700"
                           : formData.stock > 0
@@ -508,21 +507,21 @@ const EditProduct = () => {
               </div>
 
               {/* Category & Brand */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
                   Category & Brand
                 </h2>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Category *
                     </label>
                     <select
                       name="category"
                       value={formData.category}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                       required
                     >
                       <option value="">Select a category</option>
@@ -535,17 +534,17 @@ const EditProduct = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Brand
                     </label>
                     <div className="relative">
-                      <TagIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <TagIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
                       <input
                         type="text"
                         name="brand"
                         value={formData.brand}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                        className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                         placeholder="Enter brand name"
                       />
                     </div>
@@ -554,15 +553,15 @@ const EditProduct = () => {
               </div>
 
               {/* Save Button */}
-              <div className="sticky top-6">
+              <div className="sticky bottom-4 sm:bottom-6">
                 <button
                   type="submit"
                   disabled={saving}
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 sm:py-4 text-sm sm:text-base rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {saving ? (
                     <span className="flex items-center justify-center gap-2">
-                      <ArrowPathIcon className="h-5 w-5 animate-spin" />
+                      <ArrowPathIcon className="h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                       Saving Changes...
                     </span>
                   ) : (
@@ -570,7 +569,7 @@ const EditProduct = () => {
                   )}
                 </button>
 
-                <div className="mt-4 text-center text-sm text-gray-500">
+                <div className="mt-3 sm:mt-4 text-center text-xs sm:text-sm text-gray-500">
                   <p>All changes will be updated immediately</p>
                 </div>
               </div>

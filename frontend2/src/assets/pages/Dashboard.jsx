@@ -16,17 +16,32 @@ const Dashboard = () => {
   const location = useLocation();
 
   const [sellerInfo, setSellerInfo] = useState(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768);
 
+  // useEffect(() => {
+  //   const sellerData = localStorage.getItem("sellerInfo");
+
+  //   if (sellerData) {
+  //     setSellerInfo(JSON.parse(sellerData));
+  //   } else {
+  //     navigate("/seller/login");
+  //   }
+  // }, [navigate]);
   useEffect(() => {
-    const sellerData = localStorage.getItem("sellerInfo");
-
-    if (sellerData) {
-      setSellerInfo(JSON.parse(sellerData));
-    } else {
-      navigate("/seller/login");
+  // Auto-collapse sidebar on small screens when window resizes
+  const handleResize = () => {
+    if (window.innerWidth < 768 && sidebarOpen) {
+      setSidebarOpen(false);
+    } else if (window.innerWidth >= 768 && !sidebarOpen) {
+      setSidebarOpen(true);
     }
-  }, [navigate]);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  // Cleanup listener on unmount
+  return () => window.removeEventListener("resize", handleResize);
+}, [sidebarOpen]);
 
   // Navigation items (match your routes)
   const navItems = [
