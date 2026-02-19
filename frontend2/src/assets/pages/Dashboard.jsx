@@ -27,21 +27,21 @@ const Dashboard = () => {
       navigate("/seller/login");
     }
   }, [navigate]);
-//   useEffect(() => {
-//   // Auto-collapse sidebar on small screens when window resizes
-//   const handleResize = () => {
-//     if (window.innerWidth < 768 && sidebarOpen) {
-//       setSidebarOpen(false);
-//     } else if (window.innerWidth >= 768 && !sidebarOpen) {
-//       setSidebarOpen(true);
-//     }
-//   };
+  //   useEffect(() => {
+  //   // Auto-collapse sidebar on small screens when window resizes
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 768 && sidebarOpen) {
+  //       setSidebarOpen(false);
+  //     } else if (window.innerWidth >= 768 && !sidebarOpen) {
+  //       setSidebarOpen(true);
+  //     }
+  //   };
 
-//   window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-//   // Cleanup listener on unmount
-//   return () => window.removeEventListener("resize", handleResize);
-// }, [sidebarOpen]);
+  //   // Cleanup listener on unmount
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, [sidebarOpen]);
 
   // Navigation items (match your routes)
   const navItems = [
@@ -112,8 +112,7 @@ const Dashboard = () => {
           <nav className="space-y-2">
             {navItems.map((item) => {
               const isActive =
-                (location.pathname === "/seller" &&
-                  item.id === "dashboard") ||
+                (location.pathname === "/seller" && item.id === "dashboard") ||
                 location.pathname.startsWith(`/seller/${item.id}`);
 
               return (
@@ -121,9 +120,7 @@ const Dashboard = () => {
                   key={item.id}
                   onClick={() => navigate(`/seller/${item.id}`)}
                   className={`w-full flex items-center ${
-                    sidebarOpen
-                      ? "justify-start px-4"
-                      : "justify-center p-3"
+                    sidebarOpen ? "justify-start px-4" : "justify-center p-3"
                   } py-3 rounded-lg transition-colors ${
                     isActive
                       ? "bg-blue-50 text-blue-600"
@@ -137,9 +134,7 @@ const Dashboard = () => {
                   />
 
                   {sidebarOpen && (
-                    <span className="ml-3 font-medium">
-                      {item.name}
-                    </span>
+                    <span className="ml-3 font-medium">{item.name}</span>
                   )}
                 </button>
               );
@@ -152,15 +147,11 @@ const Dashboard = () => {
           <button
             onClick={handleLogout}
             className={`w-full flex items-center ${
-              sidebarOpen
-                ? "justify-start px-4"
-                : "justify-center p-3"
+              sidebarOpen ? "justify-start px-4" : "justify-center p-3"
             } py-3 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors`}
           >
             <ArrowRightOnRectangleIcon className="h-5 w-5" />
-            {sidebarOpen && (
-              <span className="ml-3 font-medium">Logout</span>
-            )}
+            {sidebarOpen && <span className="ml-3 font-medium">Logout</span>}
           </button>
         </div>
       </div>
@@ -170,15 +161,32 @@ const Dashboard = () => {
         {/* Top Bar */}
         <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">
-              Dashboard
-            </h1>
+            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
             <p className="text-gray-600">
               Welcome back, {sellerInfo?.shopName || "Seller"}!
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
+            <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+              <span className="font-semibold text-blue-600">
+                {sellerInfo?.shopName?.charAt(0) || "S"}
+              </span>
+            </div>
+
+            {sidebarOpen && (
+              <div>
+                <p className="font-medium text-gray-900">
+                  {sellerInfo?.shopName || "Shop Name"}
+                </p>
+                <p className="text-sm text-gray-500">Seller</p>
+              </div>
+            )}
+          </div> */}
+          <div
+            onClick={() => navigate("/seller/profile")}
+            className="flex items-center gap-3 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded-lg transition"
+          >
             <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
               <span className="font-semibold text-blue-600">
                 {sellerInfo?.shopName?.charAt(0) || "S"}

@@ -10,6 +10,7 @@ import SellerLogin from "./assets/pages/SellerLogin";
 import AddProduct from "./assets/pages/AddProduct";
 import SellerSummary from "./assets/pages/SellerSummry";
 import EditProduct from "./assets/pages/EditProduct";
+import SellerProfile from "./assets/pages/SellerProfile";
 const App = () => {
   return (
     <div>
@@ -22,6 +23,8 @@ const App = () => {
 
       {/* Seller Dashboard Layout */}
       <Route path="/seller" element={<Dashboard />}>
+
+      <Route path="profile" element={<SellerProfile />} />
 
         {/* Default dashboard page */}
         <Route index element={<SellerSummary />} />

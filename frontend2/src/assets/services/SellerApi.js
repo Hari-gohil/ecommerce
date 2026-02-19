@@ -57,7 +57,9 @@ export const uploadProductImage = (formData) =>
     },
   });
 
-  
+  export const getSellerProfile = () =>
+  API.get("/sellers/profile");
+
 
 // Get Product By ID
 export const getProductById = (id) =>
@@ -68,7 +70,7 @@ export const deleteProduct = (id) =>
   API.delete(`/products/${id}`);
 
 export const getSellerSummary = (sellerId) =>
-  API.get(`/sellers/summary/${sellerId}`);
+  API.get(`/seller/summary/${sellerId}`);
 
 /* ================= ORDERS ================= */
 

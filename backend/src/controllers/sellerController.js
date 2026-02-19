@@ -95,3 +95,20 @@ export const getSellerUsers = async (req, res) => {
   }
 };
 
+
+
+export const getSellerProfile = async (req, res) => {
+  try {
+    const seller = await Seller.findById(req.user.id).select("-password");
+
+    if (!seller) {
+      return res.status(404).json({ message: "Seller not found" });
+    }
+
+    res.json(seller);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+

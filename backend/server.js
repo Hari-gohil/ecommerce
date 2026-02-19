@@ -7,8 +7,8 @@ import productRoutes from './src/routes/productRoutes.js';
 
 import cartRoutes from './src/routes/cartRoutes.js';
 import orderRoutes from './src/routes/orderRoutes.js';
-import paymentRoutes from './src/routes/paymentRoutes.js'
-import reviewRoutes from './src/routes/reviewRoutes.js'
+import paymentRoutes from './src/routes/paymentRoutes.js';
+import reviewRoutes from './src/routes/reviewRoutes.js';
 import cors from 'cors';
 dotenv.config();
 connectDB();

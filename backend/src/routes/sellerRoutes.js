@@ -18,7 +18,7 @@ import {
   loginSeller,
   getSellerUsers,
 } from "../controllers/sellerController.js";
-
+import { getSellerProfile } from "../controllers/sellerController.js";
 import { getSellerSummary } from "../controllers/sellerSummaryController.js";
 import { protect } from "../middlewares/authSeller.js";
 
@@ -27,7 +27,7 @@ const router = express.Router();
 router.post("/register", registerSeller);
 router.post("/login", loginSeller);
 router.get("/summary/:id", getSellerSummary);
-
+router.get("/profile", protect, getSellerProfile);
 router.get("/users", protect, getSellerUsers);
 
 export default router;
