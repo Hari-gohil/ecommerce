@@ -64,8 +64,8 @@ export const getProductById = (id) =>
 export const deleteProduct = (id) =>
   API.delete(`/products/${id}`);
 
-export const getSellerSummary = (id) =>
-  API.get(`/sellers/summary/${id}`);
+export const getSellerSummary = (sellerId) =>
+  API.get(`/sellers/summary/${sellerId}`);
 
 /* ================= ORDERS ================= */
 
