@@ -4,7 +4,7 @@ import AdminLogin from "./assets/pages/SellerLogin";
 import Dashboard from "./assets/pages/Dashboard";
 import Products from "./assets/pages/Products";
 import Orders from "./assets/pages/SellerOrders";
-import Users from "./assets/pages/Users";
+import Users from "./assets/pages/Users.jsx";
 import SellerRegister from "./assets/pages/SallerRegister";
 import SellerLogin from "./assets/pages/SellerLogin";
 import AddProduct from "./assets/pages/AddProduct";

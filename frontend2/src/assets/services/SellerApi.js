@@ -30,6 +30,9 @@ export const loginSeller = (data) =>
 export const getSellerProducts = (sellerId) =>
   API.get(`/products/seller/${sellerId}`);
 
+export const getSellerUsers = () =>
+  API.get("/sellers/users");
+
 /* ================= PRODUCTS ================= */
 
 // Create Product
