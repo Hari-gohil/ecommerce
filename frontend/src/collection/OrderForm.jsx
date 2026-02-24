@@ -770,6 +770,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { createOrder } from "../api/api.js";
 
 const OrderForm = () => {
   const location = useLocation();
@@ -862,15 +863,16 @@ const OrderForm = () => {
         totalAmount,
       };
 
-      await axios.post(
-        "http://localhost:3000/api/orders",
-        orderData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      // await axios.post(
+      //   "http://localhost:3000/api/orders",
+      //   orderData,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+      await createOrder(orderData);
 
       alert("🎉 Order Placed Successfully!");
 
