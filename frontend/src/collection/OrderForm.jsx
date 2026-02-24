@@ -863,8 +863,7 @@ const OrderForm = () => {
       };
 
       await axios.post(
-        // "http://localhost:3000/api/orders",
-        "frontend/src/api/api.js/api/orders",
+        "http://localhost:3000/api/orders",
         orderData,
         {
           headers: {
@@ -877,7 +876,7 @@ const OrderForm = () => {
 
       // ===== CLEAR CART =====
       if (cart) {
-        await axios.delete("frontend/src/api/api.js/api/cart/clear", {
+        await axios.delete("http://localhost:3000/api/cart/clear", {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
