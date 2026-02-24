@@ -850,6 +850,17 @@ const Navbar = () => {
               >
                 Orders
               </button>
+
+              {/* ✅ Logout Button */}
+              <button
+                onClick={() => {
+                  navigate("/logout");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-3.5 px-4 text-red-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200"
+              >
+                Logout
+              </button>
             </div>
           </div>
         )}
