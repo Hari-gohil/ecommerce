@@ -80,7 +80,8 @@ const Orders = () => {
                 >
                   <div>
                     <p className="font-medium">
-                      {item.product?.title || "Product"}
+                      {/* {item.product?.title || "Product"} */}
+                      {item.product?.name || "Product"}
                     </p>
                     <p className="text-gray-500">
                       Qty: {item.quantity}
